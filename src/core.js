@@ -1,4 +1,4 @@
-import {List} from 'immutable';
+import {List, Map} from 'immutable';
 
 export const INITIAL_STATE = Map();
 
@@ -39,6 +39,7 @@ export function next(state) {
                 .remove('entries')
                 .set('winner', entries.first());
   } else {
+		//The implementation for this will merge an update into the old state, where the first two entries are put in one List, and the rest in the new version of entries:
     return state.merge({
       vote: Map({pair: entries.take(2)}),
       entries: entries.skip(2)
